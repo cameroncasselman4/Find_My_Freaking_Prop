@@ -24,5 +24,14 @@
         android:layout_marginTop="141dp"
         android:text="View Inventory" />
 
+    <Button
+        android:id="@+id/viewList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:text="ListView" />
+
 
 </RelativeLayout>

@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         myDb = new MyDatabaseHelper(this);
         configureViewItemsButton();
         configureNextButton();
+        configureListButton();
     }
 
     public void configureNextButton()
@@ -29,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, AddItem.class));
+            }
+        });
+    }
+    public void configureListButton()
+    {
+        Button addItem = (Button)findViewById(R.id.viewList);
+        addItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ViewInventory.class));
             }
         });
     }
