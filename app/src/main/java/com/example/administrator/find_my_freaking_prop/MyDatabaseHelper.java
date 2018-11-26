@@ -66,13 +66,32 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    //this is for use with populating the listview
     public Cursor getAllData()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from " + TABLE_ITEMS, null);
-        return res;
+        String query = "SELECT * FROM " + TABLE_ITEMS;
+        Cursor data = db.rawQuery(query, null);
+        return data;
     }
 
+    //returns itemID associated with the itemname
+    public Cursor getItemID(String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + ITEM_ID + " FROM " + TABLE_ITEMS + " WHERE " + ITEM_NAME + " = '" + name + "'";
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
 
+    public Cursor updateName(String id, String value, String oldValue)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_ITEMS + " SET " + ITEM_NAME + " = '" + value +
+                "' WHERE " + ITEM_ID + " = '" + id +
+                "' AND " + ITEM_NAME + " = '" + oldValue + "'";
+                ;
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
 
 }
