@@ -83,6 +83,20 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public boolean insertpData(String fname, String lname, String phone, String email)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PERSON_FIRST_NAME, fname);
+        contentValues.put(PERSON_LAST_NAME, lname);
+        contentValues.put(PERSON_PHONE, phone);
+        contentValues.put(PERSON_EMAIL, email);
+        long result = db.insert(TABLE_PERSON,null, contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
     //updates items table from editDataActivity
     public void updateItem(String itemName, int id, String oldValue)
     {
