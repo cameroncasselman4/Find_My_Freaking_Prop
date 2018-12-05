@@ -59,8 +59,9 @@ public class MainActivity extends AppCompatActivity {
                StringBuffer buffer = new StringBuffer();
                while(res.moveToNext()){
                    buffer.append("Id: " + res.getString(0) + "\n");
-                   buffer.append("PersonID: " + res.getString(1) + "\n");
                    buffer.append("Item Name: " + res.getString(2) + "\n");
+                   buffer.append("Item Location: " + res.getString(3) + "\n");
+                   buffer.append("Item Description: " + res.getString(4) + "\n");
                }
 
                //show data

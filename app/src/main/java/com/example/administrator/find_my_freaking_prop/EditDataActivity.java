@@ -41,8 +41,11 @@ public class EditDataActivity extends AppCompatActivity {
         selectedItemID = receivedIntent.getIntExtra("id",-1);
         selectedItemName = receivedIntent.getStringExtra("name");
         selectedPersonID = receivedIntent.getStringExtra("personID");
-        selectedItemLocation = receivedIntent.getStringExtra("itemLocation");
-        selectedItemDescription = receivedIntent.getStringExtra("itemDescription");
+        selectedItemLocation = receivedIntent.getStringExtra("location");
+        selectedItemDescription = receivedIntent.getStringExtra("description");
+
+        Log.d(TAG, "onItemClick: This description is " + selectedItemDescription);
+        Log.d(TAG, "onItemClick: This location is " + selectedItemLocation);
 
 
 

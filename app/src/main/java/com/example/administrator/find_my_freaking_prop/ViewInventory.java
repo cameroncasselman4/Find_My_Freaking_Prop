@@ -74,6 +74,7 @@ public class ViewInventory extends AppCompatActivity {
                     itemLocation = data.getString(3);
                     itemDescription = data.getString(4);
                     itemInStock = data.getString(5);
+
                 }
                 if(itemID > -1){
                     Log.d(TAG, "onItemClick: This ID is " + itemID);
