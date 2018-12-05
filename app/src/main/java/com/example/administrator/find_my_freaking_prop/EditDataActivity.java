@@ -15,9 +15,9 @@ public class EditDataActivity extends AppCompatActivity {
 
     private static final String TAG = "EditDataActivity1";
     private Button btnSave,btnDelete;
-    private EditText editable_item;
+    private EditText getItemName,getPersonID,getItemLocation,getItemDescription,getItemInStock;
     MyDatabaseHelper db;
-    private String selectedItemName;
+    private String selectedItemName,selectedPersonID,selectedItemLocation,selectedItemDescription,selectedItemInStock;
     private int selectedItemID;
 
     @Override
@@ -25,27 +25,37 @@ public class EditDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_edit_data);
-        btnSave = (Button) findViewById(R.id.btnDelete);
+        btnSave = (Button) findViewById(R.id.btnSave);
         btnDelete = (Button) findViewById(R.id.btnDelete);
-        editable_item = (EditText) findViewById(R.id.editable_item);
+        getItemName = (EditText) findViewById(R.id.getItemName);
+        getPersonID = (EditText) findViewById(R.id.getPersonID);
+        getItemLocation = (EditText) findViewById(R.id.getItemLocation);
+        getItemDescription = (EditText) findViewById(R.id.getItemDescription);
+        //getItemInStock = (EditText) findViewById(R.id.getItemInStock); we don't have anything on the ui for this yet
         db = new MyDatabaseHelper(this);
 
         //get the intent extra from the ViewInventory
         Intent receivedIntent = getIntent();
 
-        //get the itemID that was passed from the previous intent
+        //get the itemID, name, personid, location, and description passed from the previous intent
         selectedItemID = receivedIntent.getIntExtra("id",-1);
-
-        //get the itemName that was passed from the previous intent
         selectedItemName = receivedIntent.getStringExtra("name");
+        selectedPersonID = receivedIntent.getStringExtra("personID");
+        selectedItemLocation = receivedIntent.getStringExtra("itemLocation");
+        selectedItemDescription = receivedIntent.getStringExtra("itemDescription");
+
+
 
         //set editItem line to selected name
-        editable_item.setText(selectedItemName);
+        getItemName.setText(selectedItemName);
+        getPersonID.setText(selectedPersonID);
+        getItemLocation.setText(selectedItemLocation);
+        getItemDescription.setText(selectedItemDescription);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String item = editable_item.getText().toString();
+                String item = getItemName.getText().toString();
                 Log.d(TAG, "onItemClick: This name is " + item);
                 if(!item.equals("")){
                     db.updateItem(item,selectedItemID,selectedItemName);

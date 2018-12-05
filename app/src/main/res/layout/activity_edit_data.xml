@@ -16,7 +16,7 @@
         android:text="Description" />
 
     <EditText
-        android:id="@+id/editable_item4"
+        android:id="@+id/getPersonID"
         android:layout_width="273dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -28,7 +28,7 @@
         android:textAlignment="center" />
 
     <EditText
-        android:id="@+id/editable_item3"
+        android:id="@+id/getItemDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -40,7 +40,7 @@
         android:textAlignment="center" />
 
     <EditText
-        android:id="@+id/editable_item2"
+        android:id="@+id/getItemLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -63,7 +63,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editable_item"
+        android:id="@+id/getItemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -77,9 +77,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editable_item"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="267dp"
+        android:layout_alignEnd="@+id/getPersonID"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="62dp"
         android:weightSum="100">
 
         <Button
@@ -133,12 +133,11 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editable_item4"
+        android:layout_alignBaseline="@+id/getPersonID"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="11dp"
-        android:layout_marginRight="11dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
         android:text="Button" />
 
 </RelativeLayout>

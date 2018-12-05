@@ -62,19 +62,28 @@ public class ViewInventory extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String name = adapterView.getItemAtPosition(i).toString(); //get current name when list item is clicked
-
-                Cursor data = db.getItemID(name);//get the itemID associated with the name
+                Cursor data = db.getItemData(name);//get the itemID associated with the name
+                String personID = "";
+                String itemLocation = "";
+                String itemDescription = "";
+                String itemInStock = "";
                 int itemID = -1;
                 if(data.moveToNext()){ //if moving to the next row finds the ID
                     itemID = data.getInt(0);
+                    personID = data.getString(1);
+                    itemLocation = data.getString(3);
+                    itemDescription = data.getString(4);
+                    itemInStock = data.getString(5);
                 }
                 if(itemID > -1){
                     Log.d(TAG, "onItemClick: This ID is " + itemID);
                     Intent editScreenIntent = new Intent(ViewInventory.this, EditDataActivity.class);
                     editScreenIntent.putExtra("id",itemID);
                     editScreenIntent.putExtra("name", name);
-
-
+                    editScreenIntent.putExtra("personID", personID);
+                    editScreenIntent.putExtra("location", itemLocation);
+                    editScreenIntent.putExtra("description", itemDescription);
+                    editScreenIntent.putExtra("itemInStock", itemInStock);
                     startActivity(editScreenIntent);
                 }
                 else{

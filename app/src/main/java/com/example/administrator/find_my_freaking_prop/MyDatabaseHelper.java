@@ -76,7 +76,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
     //returns entire row associated with the item name might cause a problem with duplicate names
-    public Cursor getItemID(String name){
+    public Cursor getItemData(String name){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + ITEM_NAME + " = '" + name + "'";
         Cursor data = db.rawQuery(query,null);
