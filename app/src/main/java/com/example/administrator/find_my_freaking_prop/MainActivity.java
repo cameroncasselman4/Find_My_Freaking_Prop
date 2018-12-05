@@ -19,11 +19,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         myDb = new MyDatabaseHelper(this);
         configureViewItemsButton();
-        configureNextButton();
+        configureAddItemButton();
         configureListButton();
     }
 
-    public void configureNextButton()
+    public void configureAddItemButton()
     {
         Button addItem = (Button)findViewById(R.id.addItem);
         addItem.setOnClickListener(new View.OnClickListener() {

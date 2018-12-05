@@ -18,33 +18,54 @@ import java.util.List;
 public class ViewInventory extends AppCompatActivity {
 
     MyDatabaseHelper db;
-    private static final String TAG = "ViewInventory";
+    private static final String TAG = "ViewInventory1";
     ListView listView;
     //String items[] = new String [] {"Apple","Orange","Bananna","Grapes"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        populateListView();
+    }
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        populateListView();
+    }
+
+
+    private void populateListView(){
         setContentView(R.layout.activity_view_inventory);
         listView = (ListView) findViewById(R.id.inventoryList);
         db = new MyDatabaseHelper(this);
-        populateListView();
-    }
-    private void populateListView(){
-        Cursor data = db.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()){
-            listData.add(data.getString(2));
+        Cursor data = db.getAllData();  //query to get all of the data in the items table
+
+        int numCols = data.getColumnCount() -1; //database meta data function that returns the number of rows -1
+        //** 1st col = itemID, 2nd col = personID, 3rd = itemName, 4th col = itemLocation 5th col = itemDescription, 6th col = itemInStock
+        ArrayList<ArrayList<String>> itemData = new ArrayList<ArrayList<String>>(); //This is used to store information about the attributes in the table ***leaving out due date for now.
+        ArrayList<String>getRowData = new ArrayList<String>();
+        for(int i = 0; i <= numCols; i++) //loop for each column
+        {
+            while(data.moveToNext())
+            { //loops until there's no more rows
+                getRowData.add(data.getString(i));
+            }
+            //add getRowData to 2d arrayList
+            itemData.add(new ArrayList<String>(getRowData));
+            //clear getRowData for next use
+            getRowData.clear();
+            //move cursor back to the top
+            data.moveToFirst();
         }
-        final ListAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,listData);
+        final ListAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,itemData.get(2)); //add listData arraylist to list view
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String name = adapterView.getItemAtPosition(i).toString();
+                String name = adapterView.getItemAtPosition(i).toString(); //get current name when list item is clicked
 
-                Cursor data = db.getItemID(name);//get the item id associated with the name
+                Cursor data = db.getItemID(name);//get the itemID associated with the name
                 int itemID = -1;
-                while(data.moveToNext()){
+                if(data.moveToNext()){ //if moving to the next row finds the ID
                     itemID = data.getInt(0);
                 }
                 if(itemID > -1){
@@ -52,6 +73,8 @@ public class ViewInventory extends AppCompatActivity {
                     Intent editScreenIntent = new Intent(ViewInventory.this, EditDataActivity.class);
                     editScreenIntent.putExtra("id",itemID);
                     editScreenIntent.putExtra("name", name);
+
+
                     startActivity(editScreenIntent);
                 }
                 else{

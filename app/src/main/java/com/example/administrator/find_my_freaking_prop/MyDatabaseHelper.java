@@ -75,23 +75,31 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    //returns itemID associated with the itemname
+    //returns entire row associated with the item name might cause a problem with duplicate names
     public Cursor getItemID(String name){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + ITEM_ID + " FROM " + TABLE_ITEMS + " WHERE " + ITEM_NAME + " = '" + name + "'";
+        String query = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + ITEM_NAME + " = '" + name + "'";
         Cursor data = db.rawQuery(query,null);
         return data;
     }
 
-    public Cursor updateName(String id, String value, String oldValue)
+    //updates items table from editDataActivity
+    public void updateItem(String itemName, int id, String oldValue)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "UPDATE " + TABLE_ITEMS + " SET " + ITEM_NAME + " = '" + value +
+        String query = "UPDATE " + TABLE_ITEMS + " SET " + ITEM_NAME + " = '" + itemName +
                 "' WHERE " + ITEM_ID + " = '" + id +
                 "' AND " + ITEM_NAME + " = '" + oldValue + "'";
-                ;
-        Cursor data = db.rawQuery(query, null);
-        return data;
+        db.execSQL(query);
+    }
+
+    //Deletes item from EditDataActivity
+    public void deleteItem(int id, String name)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + TABLE_ITEMS + " WHERE " + ITEM_ID + " = '" + id +
+                "' AND " + ITEM_NAME + " = '" + name + "'";
+        db.execSQL(query);
     }
 
 }
