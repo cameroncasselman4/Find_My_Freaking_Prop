@@ -21,8 +21,18 @@ public class MainActivity extends AppCompatActivity {
         configureViewItemsButton();
         configureAddItemButton();
         configureListButton();
+        configureAddPersonButton();
     }
 
+    public void configureAddPersonButton() {
+        Button addPerson = (Button) findViewById(R.id.addPerson);
+        addPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AddPerson.class));
+            }
+        });
+    }
     public void configureAddItemButton()
     {
         Button addItem = (Button)findViewById(R.id.addItem);
