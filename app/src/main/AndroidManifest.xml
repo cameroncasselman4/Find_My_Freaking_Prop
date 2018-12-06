@@ -19,6 +19,8 @@
         <activity android:name=".AddItem" />
         <activity android:name=".ViewInventory" />
         <activity android:name=".EditDataActivity"></activity>
+        <activity android:name=".AddPerson"></activity>
+
     </application>
 
 </manifest>
