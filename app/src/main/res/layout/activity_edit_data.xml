@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -22,10 +23,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="321dp"
+        android:layout_marginTop="348dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:textAlignment="center" />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/getItemDescription"
@@ -34,10 +34,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="273dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:textAlignment="center" />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/getItemLocation"
@@ -46,10 +45,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="179dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:textAlignment="center" />
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/textView4"
@@ -71,15 +69,15 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="96dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:textAlignment="center" />
+        android:inputType="textPersonName" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/getPersonID"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="62dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="43dp"
         android:weightSum="100">
 
         <Button
@@ -106,7 +104,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="97dp"
+        android:layout_marginTop="69dp"
         android:text="Name" />
 
     <TextView
@@ -126,7 +124,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="155dp"
         android:text="Location" />
 
     <Button
@@ -138,6 +136,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="14dp"
         android:layout_marginRight="14dp"
-        android:text="Button" />
+        android:text="Check out" />
 
 </RelativeLayout>
