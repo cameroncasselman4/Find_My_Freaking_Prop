@@ -14,11 +14,12 @@ import android.widget.Toast;
 public class EditDataActivity extends AppCompatActivity {
 
     private static final String TAG = "EditDataActivity1";
-    private Button btnSave,btnDelete;
+    private Button btnSave,btnDelete, btnCheckout;
     private EditText getItemName,getPersonID,getItemLocation,getItemDescription,getItemInStock;
     MyDatabaseHelper db;
     private String selectedItemName,selectedPersonID,selectedItemLocation,selectedItemDescription,selectedItemInStock;
     private int selectedItemID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class EditDataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_data);
         btnSave = (Button) findViewById(R.id.btnSave);
         btnDelete = (Button) findViewById(R.id.btnDelete);
+        btnCheckout = (Button) findViewById(R.id.checkoutbtn);
         getItemName = (EditText) findViewById(R.id.getItemName);
         getPersonID = (EditText) findViewById(R.id.getPersonID);
         getItemLocation = (EditText) findViewById(R.id.getItemLocation);
@@ -96,6 +98,14 @@ public class EditDataActivity extends AppCompatActivity {
             }
 
 
+        });
+
+        //send to checkout activity
+        btnCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EditDataActivity.this, CheckoutActivity.class));
+            }
         });
     }
 

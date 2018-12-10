@@ -116,4 +116,16 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
+
+    //-------------------------------
+    //methods for person table
+
+    //query the person table returning resultset of people
+    public Cursor getPeople() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_PERSON;
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
 }

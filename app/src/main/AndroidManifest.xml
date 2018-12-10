@@ -18,9 +18,9 @@
         </activity>
         <activity android:name=".AddItem" />
         <activity android:name=".ViewInventory" />
-        <activity android:name=".EditDataActivity"></activity>
-        <activity android:name=".AddPerson"></activity>
-
+        <activity android:name=".EditDataActivity" />
+        <activity android:name=".AddPerson" />
+        <activity android:name=".CheckoutActivity"></activity>
     </application>
 
 </manifest>

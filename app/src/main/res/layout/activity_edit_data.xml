@@ -130,7 +130,7 @@
         android:text="Location" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/checkoutbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/getPersonID"
@@ -138,6 +138,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="14dp"
         android:layout_marginRight="14dp"
-        android:text="Button" />
+        android:text="Checkout" />
 
 </RelativeLayout>
