@@ -20,7 +20,7 @@ public class EditDataActivity extends AppCompatActivity {
     private EditText getItemName,getItemLocation,getItemDescription,getItemInStock;
     private TextView getPersonID;
     MyDatabaseHelper db;
-    private String selectedItemName,selectedPersonID,selectedItemLocation,selectedItemDescription,selectedItemInStock;
+    private String selectedItemName,selectedPersonID,selectedItemLocation,selectedItemDescription,selectedItemInStock,getSelectedItemID;
     private int selectedItemID;
 
     @Override
@@ -60,6 +60,7 @@ public class EditDataActivity extends AppCompatActivity {
         getItemLocation.setText(selectedItemLocation);
         getItemDescription.setText(selectedItemDescription);
 
+        //this checks the personId associated with the item. If it's null then the text is set
         if(selectedPersonID == null)
             getPersonID.setText("Item is available for rent");
         else
@@ -112,7 +113,11 @@ public class EditDataActivity extends AppCompatActivity {
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EditDataActivity.this, CheckoutActivity.class));
+                Intent checkoutScreenIntent = new Intent(EditDataActivity.this, CheckoutActivity.class);
+                //startActivity(new Intent(EditDataActivity.this, CheckoutActivity.class));
+                checkoutScreenIntent.putExtra("id",selectedItemID);
+                //checkoutScreenIntent.putExtra("personID",selectedPersonID);
+                startActivity(checkoutScreenIntent);
             }
         });
     }

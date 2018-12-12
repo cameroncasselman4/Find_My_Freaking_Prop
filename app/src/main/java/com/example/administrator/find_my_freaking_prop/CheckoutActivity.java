@@ -20,7 +20,8 @@ public class CheckoutActivity extends AppCompatActivity {
     MyDatabaseHelper db;
     private static final String TAG = "CheckoutActivity1";
     ListView listView;
-
+    //this is passed from the previous activity
+    private int selectedItemID,selectedPersonID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,9 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
     public void populateListView() {
+        Intent receivedIntent = getIntent();
+        selectedItemID = receivedIntent.getIntExtra("id",-1);
+        selectedPersonID = receivedIntent.getIntExtra()
         setContentView(R.layout.activity_view_inventory);
         listView = (ListView) findViewById(R.id.inventoryList);
         db = new MyDatabaseHelper(this);
@@ -53,7 +57,9 @@ public class CheckoutActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //set personID in Table_Items to the person id clicked
+                db.setPersonIDinItem(selectedItemID);
                 //change in stock to false
+                db.updateItemInStockFalse(selectedItemID);
                 //set toast notifying the user that person is now renting the item
                 //look into what happens when holding the button down?
                 finish();

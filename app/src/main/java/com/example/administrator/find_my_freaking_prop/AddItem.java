@@ -35,6 +35,7 @@ public class AddItem extends AppCompatActivity {
                 boolean isInserted = db.insertData(itemName.getText().toString(),itemDescription.getText().toString(),itemLocation.getText().toString());
                 if(isInserted)
                     Toast.makeText(AddItem.this,"Inventory Updated",Toast.LENGTH_LONG).show();
+
                 else
                     Toast.makeText(AddItem.this,"Failed to Update",Toast.LENGTH_LONG).show();
             }

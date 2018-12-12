@@ -36,7 +36,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     {
         //Still need to add foreign key to other table after testin
         db.execSQL("create table " + TABLE_PERSON + " ( " + PERSON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PERSON_NAME + " TEXT, " + PERSON_PHONE + " TEXT, " + PERSON_EMAIL + " TEXT)");
-        db.execSQL("create table " + TABLE_ITEMS + " ( " + ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PERSON_ID + " INTEGER, " + ITEM_NAME + " TEXT, " + ITEM_LOCATION + " TEXT, " + ITEM_DESCRIPTION + " TEXT, " + ITEM_INSTOCK + " BOOLEAN, " + ITEM_DUEDATE + " DATE, FOREIGN KEY(" + PERSON_ID +") REFERENCES "+ TABLE_PERSON+"("+PERSON_ID+"))");
+        db.execSQL("create table " + TABLE_ITEMS + " ( " + ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PERSON_ID + " INTEGER, " + ITEM_NAME + " TEXT, " + ITEM_LOCATION + " TEXT, " + ITEM_DESCRIPTION + " TEXT, " + ITEM_INSTOCK + " TEXT NOT NULL DEFAULT 'true', " + ITEM_DUEDATE + " DATE, FOREIGN KEY(" + PERSON_ID +") REFERENCES "+ TABLE_PERSON+"("+PERSON_ID+"))");
         ContentValues contentValues = new ContentValues();
         //insert data because list view doesn't work when only one item is in the database? can't figure out why that is.
         contentValues.put(ITEM_NAME,"Test");
@@ -85,6 +85,27 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + ITEM_NAME + " = '" + name + "'";
         Cursor data = db.rawQuery(query,null);
         return data;
+    }
+
+    //update query to change the item to out of stock
+    public void updateItemInStockFalse(int itemID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_ITEMS + " SET " + ITEM_INSTOCK + " = 'false' WHERE " + ITEM_ID + " = " + itemID;
+        db.execSQL(query);
+    }
+
+    //update query to change item to in stock
+    public void updateItemInStockTrue(int itemID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_ITEMS + " SET " + ITEM_INSTOCK + " = 'true' WHERE " + ITEM_ID + " = " + itemID;
+        db.execSQL(query);
+    }
+    //update query to associate personID with itemID
+
+    public void setPersonIDinItem(String personID, int itemID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_ITEMS + " SET " + PERSON_ID + " = " + personID + " WHERE " + ITEM_ID + " = " + itemID;
+        db.execSQL(query);
     }
 
     public boolean insertpData(String fname, String phone, String email)
