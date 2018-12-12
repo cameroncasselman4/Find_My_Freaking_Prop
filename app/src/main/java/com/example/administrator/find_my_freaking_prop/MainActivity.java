@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myDb = new MyDatabaseHelper(this);
-        configureViewItemsButton();
         configureAddItemButton();
         configureListButton();
         configureAddPersonButton();
@@ -52,39 +51,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ViewInventory.class));
             }
         });
-    }
-
-    public void configureViewItemsButton()
-    {
-        Button viewItems = (Button) findViewById(R.id.viewItem);
-        viewItems.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               Cursor res = myDb.getAllData();
-               if(res.getCount() == 0){
-                   showMessage("Error","Nothing found");
-                   Toast.makeText(MainActivity.this,"No Items in inventory",Toast.LENGTH_LONG).show();
-                   return;
-               }
-               StringBuffer buffer = new StringBuffer();
-               while(res.moveToNext()){
-                   buffer.append("Id: " + res.getString(0) + "\n");
-                   buffer.append("Item Name: " + res.getString(2) + "\n");
-                   buffer.append("Item Location: " + res.getString(3) + "\n");
-                   buffer.append("Item Description: " + res.getString(4) + "\n");
-               }
-
-               //show data
-                showMessage("Data", buffer.toString());
-            }
-        });
-    }
-
-    public void showMessage(String title, String Message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(Message);
-        builder.show();
     }
 }

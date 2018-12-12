@@ -11,8 +11,9 @@
         android:id="@+id/addItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="206dp"
         android:text="add item" />
 
     <Button
@@ -25,22 +26,13 @@
         android:text="add person" />
 
     <Button
-        android:id="@+id/viewItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="141dp"
-        android:text="View Inventory" />
-
-    <Button
         android:id="@+id/viewList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
-        android:text="ListView" />
+        android:layout_marginTop="101dp"
+        android:text="View Inventory" />
 
 
 </RelativeLayout>
