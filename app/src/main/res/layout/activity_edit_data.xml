@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/silver">
+
 
 
     <TextView
@@ -85,7 +87,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="DELETE" />
+            android:text="DELETE"
+            android:background="@android:color/black"
+            android:textColor="@android:color/white"/>
 
         <Button
             android:id="@+id/btnSave"
@@ -93,7 +97,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/btnDelete"
-            android:text="SAVE" />
+            android:text="SAVE"
+            android:background="@android:color/black"
+            android:textColor="@android:color/white"/>
 
     </LinearLayout>
 
@@ -136,6 +142,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="14dp"
         android:layout_marginRight="14dp"
-        android:text="Check out" />
+        android:text="Check out"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"/>
 
 </RelativeLayout>

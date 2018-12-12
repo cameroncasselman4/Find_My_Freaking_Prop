@@ -5,6 +5,7 @@
     android:id="@+id/viewItems"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/silver"
     tools:context=".MainActivity">
 
     <Button
@@ -13,6 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
         android:text="add item" />
 
     <Button
@@ -22,6 +25,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="133dp"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
         android:text="add person" />
 
     <Button
@@ -31,6 +36,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="141dp"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
         android:text="View Inventory" />
 
     <Button
@@ -40,6 +47,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="53dp"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
         android:text="ListView" />
 
 
