@@ -10,11 +10,10 @@
         android:id="@+id/emailID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lastNameID"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="148dp"
-        android:ems="10"
+        android:layout_marginTop="178dp"
         android:hint="Email"
         android:inputType="textPersonName" />
 
@@ -44,32 +43,22 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/textView3"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="-162dp"
         android:ems="10"
-        android:hint="First Name"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/lastNameID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="127dp"
-        android:ems="10"
-        android:hint="Last Name"
+        android:hint="Full Name"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/phoneID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lastNameID"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="43dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="278dp"
         android:ems="10"
         android:hint="Phone Number"
         android:inputType="textPersonName" />

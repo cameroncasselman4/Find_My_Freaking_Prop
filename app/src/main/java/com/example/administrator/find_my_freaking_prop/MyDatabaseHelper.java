@@ -21,24 +21,28 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     //Person table
     public static final String TABLE_PERSON = "person";
     public static final String PERSON_ID = "personID"; //foreign key also in Items table
-    public static final String PERSON_FIRST_NAME = "fName";
-    public static final String PERSON_LAST_NAME = "lName";
+    public static final String PERSON_NAME = "fName";
     public static final String PERSON_PHONE = "phone";
     public static final String PERSON_EMAIL = "email";
 
 
     public MyDatabaseHelper(Context context)
     {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 4);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db)
     {
         //Still need to add foreign key to other table after testin
-        db.execSQL("create table " + TABLE_PERSON + " ( " + PERSON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PERSON_FIRST_NAME + " TEXT, " + PERSON_LAST_NAME + " TEXT, " + PERSON_PHONE + " TEXT, " + PERSON_EMAIL + " TEXT)");
+        db.execSQL("create table " + TABLE_PERSON + " ( " + PERSON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PERSON_NAME + " TEXT, " + PERSON_PHONE + " TEXT, " + PERSON_EMAIL + " TEXT)");
         db.execSQL("create table " + TABLE_ITEMS + " ( " + ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PERSON_ID + " INTEGER, " + ITEM_NAME + " TEXT, " + ITEM_LOCATION + " TEXT, " + ITEM_DESCRIPTION + " TEXT, " + ITEM_INSTOCK + " BOOLEAN, " + ITEM_DUEDATE + " DATE, FOREIGN KEY(" + PERSON_ID +") REFERENCES "+ TABLE_PERSON+"("+PERSON_ID+"))");
-
+        ContentValues contentValues = new ContentValues();
+        //insert data because list view doesn't work when only one item is in the database? can't figure out why that is.
+        contentValues.put(ITEM_NAME,"Test");
+        contentValues.put(ITEM_DESCRIPTION,"Test description");
+        contentValues.put(ITEM_LOCATION,"Test location");
+        db.insert(TABLE_ITEMS,null, contentValues);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
@@ -83,12 +87,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public boolean insertpData(String fname, String lname, String phone, String email)
+    public boolean insertpData(String fname, String phone, String email)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(PERSON_FIRST_NAME, fname);
-        contentValues.put(PERSON_LAST_NAME, lname);
+        contentValues.put(PERSON_NAME, fname);
         contentValues.put(PERSON_PHONE, phone);
         contentValues.put(PERSON_EMAIL, email);
         long result = db.insert(TABLE_PERSON,null, contentValues);
@@ -114,6 +117,24 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         String query = "DELETE FROM " + TABLE_ITEMS + " WHERE " + ITEM_ID + " = '" + id +
                 "' AND " + ITEM_NAME + " = '" + name + "'";
         db.execSQL(query);
+    }
+    //methods for person table
+
+    //query the person table returning resultset of people. This will be used for populating the listview for people
+    public Cursor getPeople() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + PERSON_NAME + " FROM " + TABLE_PERSON;
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
+    //get person associated with the rented item
+    public Cursor getRenter(String itemID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + PERSON_NAME + " FROM " + TABLE_PERSON
+                    + " JOIN " + TABLE_ITEMS + " USING(" + PERSON_ID + ") WHERE " + ITEM_ID + " = " + itemID;
+        Cursor data = db.rawQuery(query, null);
+        return data;
     }
 
 }

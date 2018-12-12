@@ -56,6 +56,8 @@ public class ViewInventory extends AppCompatActivity {
             //move cursor back to the top
             data.moveToFirst();
         }
+        Log.d(TAG, "onItemClick: This ID is " + itemData.get(2));
+
         final ListAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,itemData.get(2)); //add listData arraylist to list view
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -15,7 +15,7 @@
         android:layout_marginTop="239dp"
         android:text="Description" />
 
-    <EditText
+    <TextView
         android:id="@+id/getPersonID"
         android:layout_width="273dp"
         android:layout_height="wrap_content"
@@ -24,7 +24,6 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="321dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:textAlignment="center" />
 
     <EditText
@@ -130,14 +129,14 @@
         android:text="Location" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnCheckout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/getPersonID"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp"
-        android:text="Button" />
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:text="Checkout" />
 
 </RelativeLayout>

@@ -20,7 +20,6 @@ public class AddPerson extends AppCompatActivity {
         db = new MyDatabaseHelper(this);
 
         firstName = (EditText) findViewById(R.id.firstNameID);
-        lastName = (EditText) findViewById(R.id.lastNameID);
         phoneNumber = (EditText) findViewById(R.id.phoneID);
         email = (EditText) findViewById(R.id.emailID);
         addData = (Button) findViewById(R.id.addPerson);
@@ -33,7 +32,7 @@ public class AddPerson extends AppCompatActivity {
         addData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isInserted = db.insertpData(firstName.getText().toString(), lastName.getText().toString(), phoneNumber.getText().toString(), email.getText().toString());
+                boolean isInserted = db.insertpData(firstName.getText().toString(), phoneNumber.getText().toString(), email.getText().toString());
                 if(isInserted)
                     Toast.makeText(AddPerson.this,"Inventory Updated",Toast.LENGTH_LONG).show();
                 else
