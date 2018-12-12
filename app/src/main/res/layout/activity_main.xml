@@ -11,10 +11,11 @@
         android:id="@+id/addItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="206dp"
-        android:text="add item" />
+        android:layout_marginBottom="163dp"
+        android:text="add item"
+        android:background="@color/colorPrimary"/>
 
     <Button
         android:id="@+id/addPerson"
@@ -22,8 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="133dp"
-        android:text="add person" />
+        android:layout_marginBottom="54dp"
+        android:text="add person"
+        android:background="@color/colorPrimary"/>
 
     <Button
         android:id="@+id/viewList"
@@ -31,8 +33,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="101dp"
-        android:text="View Inventory" />
+        android:layout_marginTop="201dp"
+        android:text="View Inventory"
+        android:background="@color/colorPrimary"/>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="348dp"
+        android:layout_height="128dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        app:srcCompat="@drawable/screenshot" />
 
 
 </RelativeLayout>

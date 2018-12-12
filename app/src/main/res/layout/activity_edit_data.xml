@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -76,9 +77,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/getPersonID"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="62dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="67dp"
         android:weightSum="100">
 
         <Button
@@ -86,6 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:background="@color/colorPrimary"
             android:text="DELETE" />
 
         <Button
@@ -94,6 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/btnDelete"
+            android:background="@color/colorPrimary"
             android:text="SAVE" />
 
     </LinearLayout>
@@ -137,6 +140,24 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
-        android:text="Checkout" />
+        android:text="Checkout"
+        android:background="@color/colorPrimary"/>
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="112dp"
+        android:layout_height="106dp"
+        android:layout_alignBottom="@+id/imageView7"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="-1dp"
+        app:srcCompat="@drawable/screenshot1" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="112dp"
+        android:layout_height="106dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/btnCheckout"
+        app:srcCompat="@drawable/screenshot1" />
 
 </RelativeLayout>
