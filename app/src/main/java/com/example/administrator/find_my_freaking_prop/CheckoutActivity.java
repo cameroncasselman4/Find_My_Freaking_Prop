@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -35,13 +36,14 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
     public void populateListView() {
+        setContentView(R.layout.activity_view_people);
         Intent receivedIntent = getIntent();
         selectedItemID = receivedIntent.getIntExtra("id",-1);
-        setContentView(R.layout.activity_view_inventory);
-        listView = (ListView) findViewById(R.id.inventoryList);
+        listView = (ListView) findViewById(R.id.peopleList);
         db = new MyDatabaseHelper(this);
         Cursor data = db.getPeople();
 
+        //populate with a list of names for the listview adapter
         ArrayList<String> personNames = new ArrayList<String>(); //For storing the names of people
 
         while (data.moveToNext()) {
@@ -56,17 +58,34 @@ public class CheckoutActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String name = adapterView.getItemAtPosition(i).toString();
-                Cursor peopleData = db.getPeople();
+                Cursor peopleData = db.getPeople(name);
+                //define variables to be instantiated below during the database query
+                int personID = -1;
+                String personName = "";
+                String personPhone = "";
+                String personEmail = "";
 
+                while(peopleData.moveToNext()) {
+                    personID = peopleData.getInt(0);
+                    personName = peopleData.getString(1);
+                    personPhone = peopleData.getString(2);
+                    personEmail = peopleData.getString(3);
+                }
                 //set personID in Table_Items to the person id clicked
-                db.setPersonIDinItem(selectedItemID);
+                db.setPersonIDinItem(personID,selectedItemID);
                 //change in stock to false
                 db.updateItemInStockFalse(selectedItemID);
                 //set toast notifying the user that person is now renting the item
+                toastMessage("Item checked out to " + personName);
                 //look into what happens when holding the button down?
                 finish();
 
             }
         });
     }
+
+    private void toastMessage(String message){
+        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
+    }
+
 }

@@ -12,7 +12,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "inventory.db";
     public static final String TABLE_ITEMS = "item";
     public static final String ITEM_ID = "itemID";
-    public static final String ITEM_NAME = "itemName";
+    public static final String ITEM_NAME = "item";
     public static final String ITEM_LOCATION = "itemLocation";
     public static final String ITEM_DESCRIPTION = "itemDescription";
     public static final String ITEM_INSTOCK = "itemInStock";
@@ -28,7 +28,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     public MyDatabaseHelper(Context context)
     {
-        super(context, DATABASE_NAME, null, 4);
+        super(context, DATABASE_NAME, null, 5);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
     //update query to associate personID with itemID
 
-    public void setPersonIDinItem(String personID, int itemID) {
+    public void setPersonIDinItem(int personID, int itemID) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "UPDATE " + TABLE_ITEMS + " SET " + PERSON_ID + " = " + personID + " WHERE " + ITEM_ID + " = " + itemID;
         db.execSQL(query);
@@ -122,10 +122,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
     //updates items table from editDataActivity
-    public void updateItem(String itemName, int id, String oldValue)
+    public void updateItem(String itemName, String location, String description, int id, String oldValue)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "UPDATE " + TABLE_ITEMS + " SET " + ITEM_NAME + " = '" + itemName +
+        String query = "UPDATE " + TABLE_ITEMS + " SET " + ITEM_NAME + " = '" + itemName + "', " + ITEM_LOCATION + " = '" + location + "', " + ITEM_DESCRIPTION + " = '" + description +
                 "' WHERE " + ITEM_ID + " = '" + id +
                 "' AND " + ITEM_NAME + " = '" + oldValue + "'";
         db.execSQL(query);
@@ -145,6 +145,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public Cursor getPeople() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + PERSON_ID + ", " + PERSON_NAME + " FROM " + TABLE_PERSON;
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
+    public Cursor getPeople(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_PERSON + " WHERE " + PERSON_NAME + " = " + "'" + name + "'";
         Cursor data = db.rawQuery(query, null);
         return data;
     }

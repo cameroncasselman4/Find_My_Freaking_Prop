@@ -70,9 +70,11 @@ public class EditDataActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String item = getItemName.getText().toString();
+                String location = getItemLocation.getText().toString();
+                String description = getItemDescription.getText().toString();
                 //Log.d(TAG, "onItemClick: This name is " + item);
                 if(!item.equals("")){
-                    db.updateItem(item,selectedItemID,selectedItemName);
+                    db.updateItem(item,location,description,selectedItemID,selectedItemName); //String itemName, String location, String description, int id, String oldValue
                 }else{
                     toastMessage("You must enter a name");
                 }

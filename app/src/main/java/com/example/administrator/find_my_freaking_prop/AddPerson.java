@@ -39,7 +39,6 @@ public class AddPerson extends AppCompatActivity {
                         firstName.setText("");
                         phoneNumber.setText("");
                         email.setText("");
-                        addData.setText("");
                 }
 
                 else

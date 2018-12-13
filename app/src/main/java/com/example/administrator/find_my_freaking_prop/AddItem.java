@@ -39,7 +39,6 @@ public class AddItem extends AppCompatActivity {
                     itemName.setText("");
                     itemDescription.setText("");
                     itemLocation.setText("");
-                    addData.setText("");
                 }
                 else
                     Toast.makeText(AddItem.this,"Failed to Update",Toast.LENGTH_LONG).show();
