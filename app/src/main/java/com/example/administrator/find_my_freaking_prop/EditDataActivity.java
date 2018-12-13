@@ -24,12 +24,21 @@ public class EditDataActivity extends AppCompatActivity {
     private int selectedItemID;
 
     @Override
+    public void onRestart() {
+        super.onRestart();
+        populateEditPage();
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        populateEditPage();
+    }
+
+    public void populateEditPage() {
 
         //Still need a method that will populate the user renting the item -Currently working on Cam
         //Still need to change the checkout button function to do something else when an item is already checked out. It needs to check in an item instead.
-        
+
         setContentView(R.layout.activity_edit_data);
         btnSave = (Button) findViewById(R.id.btnSave);
         btnDelete = (Button) findViewById(R.id.btnDelete);
@@ -51,7 +60,7 @@ public class EditDataActivity extends AppCompatActivity {
         selectedItemLocation = receivedIntent.getStringExtra("location");
         selectedItemDescription = receivedIntent.getStringExtra("description");
         //call the get person method
-        String selectedPersonName = getPersonName(String.valueOf(selectedItemID));
+        //String selectedPersonName = getPersonName(String.valueOf(selectedItemID));
 
         //Log.d(TAG, "onItemClick: This name is " + selectedPersonName);
 
@@ -61,10 +70,7 @@ public class EditDataActivity extends AppCompatActivity {
         getItemDescription.setText(selectedItemDescription);
 
         //this checks the personId associated with the item. If it's null then the text is set
-        if(selectedPersonID == null)
-            getPersonID.setText("Item is available for rent");
-        else
-            getPersonID.setText(selectedPersonID);
+        getPersonID.setText(getPersonName(selectedItemID));
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +81,7 @@ public class EditDataActivity extends AppCompatActivity {
                 //Log.d(TAG, "onItemClick: This name is " + item);
                 if(!item.equals("")){
                     db.updateItem(item,location,description,selectedItemID,selectedItemName); //String itemName, String location, String description, int id, String oldValue
+                    toastMessage("Item updated");
                 }else{
                     toastMessage("You must enter a name");
                 }
@@ -124,16 +131,19 @@ public class EditDataActivity extends AppCompatActivity {
         });
     }
 
-    private String getPersonName(String itemID){
+
+    private String getPersonName(int itemID){
         //query the database for the person's name
         String personName = "Item available for rent";
         db = new MyDatabaseHelper(this);
         Cursor data = db.getRenter(itemID);
-        Log.d("stuff1", "data.movetonext " + data.moveToNext());
+        //Log.d("stuff1", "data.movetonext " + data.moveToNext());
         if(data.moveToNext()) {
-            Log.d("stuff1", "data.movetonext " + data.getString(0));
-            if(data.getString(0) != null)
+            //Log.d("stuff1", "data.movetonext " + data.getString(0));
+            if(data.getString(0) != null) {
                 personName = data.getString(0);
+                Log.d("stuff1", "data.movetonext " + personName);
+            }
         }
 
        return personName;

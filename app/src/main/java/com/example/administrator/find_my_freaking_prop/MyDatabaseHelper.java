@@ -157,7 +157,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
     //get person associated with the rented item
-    public Cursor getRenter(String itemID) {
+    public Cursor getRenter(int itemID) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + PERSON_NAME + " FROM " + TABLE_PERSON
                     + " JOIN " + TABLE_ITEMS + " USING(" + PERSON_ID + ") WHERE " + ITEM_ID + " = " + itemID;
