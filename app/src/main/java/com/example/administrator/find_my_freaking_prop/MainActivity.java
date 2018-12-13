@@ -52,4 +52,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    public void configureViewPeopleButton()
+    {
+        Button viewPeopleButton = (Button)findViewById(R.id.viewPeopleButton);
+        viewPeopleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, view_people.class));
+            }
+        });
+    }
 }

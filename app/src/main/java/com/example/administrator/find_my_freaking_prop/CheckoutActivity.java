@@ -57,7 +57,7 @@ public class CheckoutActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String name = adapterView.getItemAtPosition(i).toString();
                 Cursor peopleData = db.getPeople();
-                
+
                 //set personID in Table_Items to the person id clicked
                 db.setPersonIDinItem(selectedItemID);
                 //change in stock to false
