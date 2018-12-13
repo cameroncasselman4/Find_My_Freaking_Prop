@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="163dp"
-        android:text="add item"
-        android:background="@color/colorPrimary"/>
+        android:layout_marginBottom="139dp"
+        android:background="@color/colorPrimary"
+        android:text="add item" />
 
     <Button
         android:id="@+id/addPerson"
@@ -33,9 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="201dp"
-        android:text="View Inventory"
-        android:background="@color/colorPrimary"/>
+        android:layout_marginTop="172dp"
+        android:background="@color/colorPrimary"
+        android:text="View Inventory" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -45,6 +45,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="23dp"
         app:srcCompat="@drawable/screenshot" />
+
+    <Button
+        android:id="@+id/viewPeopleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="220dp"
+        android:background="@color/colorPrimary"
+        android:text="View People" />
 
 
 </RelativeLayout>

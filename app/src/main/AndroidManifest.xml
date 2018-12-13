@@ -20,7 +20,8 @@
         <activity android:name=".ViewInventory" />
         <activity android:name=".EditDataActivity" />
         <activity android:name=".AddPerson" />
-        <activity android:name=".CheckoutActivity"></activity>
+        <activity android:name=".CheckoutActivity" />
+        <activity android:name=".view_people"></activity>
     </application>
 
 </manifest>
