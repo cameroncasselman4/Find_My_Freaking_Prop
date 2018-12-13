@@ -37,25 +37,27 @@ public class CheckoutActivity extends AppCompatActivity {
     public void populateListView() {
         Intent receivedIntent = getIntent();
         selectedItemID = receivedIntent.getIntExtra("id",-1);
-        selectedPersonID = receivedIntent.getIntExtra()
         setContentView(R.layout.activity_view_inventory);
         listView = (ListView) findViewById(R.id.inventoryList);
         db = new MyDatabaseHelper(this);
         Cursor data = db.getPeople();
 
-        ArrayList<String> getRowData = new ArrayList<String>(); //For storing the names of people
+        ArrayList<String> personNames = new ArrayList<String>(); //For storing the names of people
 
         while (data.moveToNext()) {
-            getRowData.add(data.getString(0));
+            personNames.add(data.getString(1));
         }
 
         //Log.d(TAG, "onItemClick: This ID is " + getRowData);
-        final ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getRowData); //add listData arraylist to list view
+        final ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, personNames); //add listData arraylist to list view
         listView.setAdapter(adapter); //set adapter to listview
         //set on click listener
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String name = adapterView.getItemAtPosition(i).toString();
+                Cursor peopleData = db.getPeople();
+                
                 //set personID in Table_Items to the person id clicked
                 db.setPersonIDinItem(selectedItemID);
                 //change in stock to false

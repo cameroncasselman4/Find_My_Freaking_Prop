@@ -33,8 +33,14 @@ public class AddPerson extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean isInserted = db.insertpData(firstName.getText().toString(), phoneNumber.getText().toString(), email.getText().toString());
-                if(isInserted)
-                    Toast.makeText(AddPerson.this,"Inventory Updated",Toast.LENGTH_LONG).show();
+                if(isInserted) {
+
+                        Toast.makeText(AddPerson.this,"Inventory Updated",Toast.LENGTH_LONG).show();
+                        firstName.setText("");
+                        phoneNumber.setText("");
+                        email.setText("");
+                        addData.setText("");
+                }
 
                 else
                     Toast.makeText(AddPerson.this,"Failed to Update",Toast.LENGTH_LONG).show();

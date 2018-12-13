@@ -144,7 +144,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     //query the person table returning resultset of people. This will be used for populating the listview for people
     public Cursor getPeople() {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + PERSON_NAME + " FROM " + TABLE_PERSON;
+        String query = "SELECT " + PERSON_ID + ", " + PERSON_NAME + " FROM " + TABLE_PERSON;
         Cursor data = db.rawQuery(query, null);
         return data;
     }
