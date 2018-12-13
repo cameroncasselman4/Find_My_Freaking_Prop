@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".AddItem">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="112dp"
+        android:layout_height="106dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/itemLocation"
+        android:layout_marginEnd="23dp"
+        app:srcCompat="@drawable/screenshot1" />
+
     <Button
         android:id="@+id/addItem"
         android:layout_width="wrap_content"
@@ -13,6 +22,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
+        android:background="@color/colorPrimary"
         android:text="Submit" />
 
     <TextView
@@ -61,5 +71,14 @@
         android:ems="10"
         android:hint="Location"
         android:inputType="textPersonName" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="112dp"
+        android:layout_height="106dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_marginStart="23dp"
+        app:srcCompat="@drawable/screenshot1" />
 
 </RelativeLayout>
