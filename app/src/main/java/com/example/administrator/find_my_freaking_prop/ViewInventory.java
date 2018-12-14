@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -17,27 +18,76 @@ import java.util.List;
 
 public class ViewInventory extends AppCompatActivity {
 
-    MyDatabaseHelper db;
+    MyDatabaseHelper db = new MyDatabaseHelper(this);;
     private static final String TAG = "ViewInventory1";
     ListView listView;
+    Button inStockbtn,outOfStockbtn,viewInventorybtn;
     //String items[] = new String [] {"Apple","Orange","Bananna","Grapes"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        populateListView();
+        buttons();
+        populateListView("viewInventorybtn");
     }
     @Override
     public void onRestart() {
         super.onRestart();
-        populateListView();
+        buttons();
+        populateListView("viewInventorybtn");
     }
 
 
-    private void populateListView(){
+
+    private void buttons(){
+
+        //set on click listeners for buttons
         setContentView(R.layout.activity_view_inventory);
+
+        viewInventorybtn = (Button) findViewById(R.id.btnViewInventory);
+        inStockbtn = (Button) findViewById(R.id.inStock);
+        outOfStockbtn = (Button) findViewById(R.id.outOfStock);
+
+        viewInventorybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String buttonPressed = "viewInventorybtn";
+                populateListView(buttonPressed);
+            }
+        });
+
+        inStockbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String buttonPressed = "inStockbtn";
+                populateListView(buttonPressed);
+            }
+        });
+
+        outOfStockbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String buttonPressed = "outOfStockbtn";
+                populateListView(buttonPressed);
+            }
+        });
+
+    }
+
+
+    private void populateListView(String buttonPressed) {
         listView = (ListView) findViewById(R.id.inventoryList);
-        db = new MyDatabaseHelper(this);
-        Cursor data = db.getAllData();  //query to get all of the data in the items table
+
+        Cursor data = db.getAllData();
+
+        if(buttonPressed == "viewInventorybtn") {
+            data = db.getAllData();  //query to get all of the data in the items table
+        }
+        else if(buttonPressed == "inStockbtn") {
+            data = db.getAllDataInStock(); //query to get all data that in stock
+        }
+        else if(buttonPressed == "outOfStockbtn") {
+            data = db.getAllDataOutOfStock(); //query to get all data out of stock
+        }
 
         int numCols = data.getColumnCount() -1; //database meta data function that returns the number of rows -1
         //** 1st col = itemID, 2nd col = personID, 3rd = itemName, 4th col = itemLocation 5th col = itemDescription, 6th col = itemInStock
@@ -95,6 +145,7 @@ public class ViewInventory extends AppCompatActivity {
             }
         });
     }
+
 
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();

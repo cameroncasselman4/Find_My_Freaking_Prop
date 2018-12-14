@@ -8,6 +8,24 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/viewInStock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/imageView4"
+        android:layout_alignTop="@+id/viewList"
+        android:background="@color/colorPrimary"
+        android:text="In Stock" />
+
+    <Button
+        android:id="@+id/viewOutOfStock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/imageView4"
+        android:layout_alignTop="@+id/viewList"
+        android:background="@color/colorPrimary"
+        android:text="Out of Stock" />
+
+    <Button
         android:id="@+id/addItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="170dp"
         android:background="@color/colorPrimary"
         android:text="View Inventory" />
 

@@ -47,6 +47,8 @@ public class EditDataActivity extends AppCompatActivity {
         getPersonID = (TextView) findViewById(R.id.getPersonID);
         getItemLocation = (EditText) findViewById(R.id.getItemLocation);
         getItemDescription = (EditText) findViewById(R.id.getItemDescription);
+
+
         //getItemInStock = (EditText) findViewById(R.id.getItemInStock); we don't have anything on the ui for this yet
         db = new MyDatabaseHelper(this);
 

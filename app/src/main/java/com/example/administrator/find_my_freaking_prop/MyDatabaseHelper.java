@@ -79,6 +79,22 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public Cursor getAllDataInStock()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + ITEM_INSTOCK + " = 'true'";
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
+    public Cursor getAllDataOutOfStock()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + ITEM_INSTOCK + " = 'false'";
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
     //returns entire row associated with the item name might cause a problem with duplicate names
     public Cursor getItemData(String name){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -92,6 +108,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "UPDATE " + TABLE_ITEMS + " SET " + ITEM_INSTOCK + " = 'false' WHERE " + ITEM_ID + " = " + itemID;
         db.execSQL(query);
+    }
+
+    public Cursor getInStock(int itemID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + ITEM_INSTOCK + " FROM " + TABLE_ITEMS + " WHERE " + ITEM_ID + " = " + itemID;
+        Cursor data = db.rawQuery(query, null);
+        return data;
     }
 
     //update query to change item to in stock
