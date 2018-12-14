@@ -33,7 +33,8 @@
             android:layout_width="0dp"
             android:layout_height="58dp"
             android:layout_weight="0.25"
-            android:background="@color/colorPrimary"
+            android:background="#000"
+            android:textColor="#FFFFFF"
             android:text="ADD ITEM" />
 
         <Button
@@ -42,7 +43,8 @@
             android:layout_height="58dp"
             android:layout_toRightOf="@+id/btnDelete"
             android:layout_weight="0.25"
-            android:background="@color/colorPrimary"
+            android:background="#000"
+            android:textColor="#FFFFFF"
             android:text="Add PERSON" />
 
         <Button
@@ -51,7 +53,8 @@
             android:layout_height="58dp"
             android:layout_toRightOf="@+id/btnDelete"
             android:layout_weight="0.25"
-            android:background="@color/colorPrimary"
+            android:background="#000"
+            android:textColor="#FFFFFF"
             android:text="INVENTORY" />
 
         <Button
@@ -60,7 +63,8 @@
             android:layout_height="58dp"
             android:layout_toRightOf="@+id/btnDelete"
             android:layout_weight="0.30"
-            android:background="@color/colorPrimary"
+            android:background="#000"
+            android:textColor="#FFFFFF"
             android:text="UPDATE PEOPLE" />
     </LinearLayout>
 

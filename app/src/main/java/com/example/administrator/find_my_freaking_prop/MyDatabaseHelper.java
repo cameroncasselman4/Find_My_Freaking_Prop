@@ -24,25 +24,22 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final String PERSON_NAME = "fName";
     public static final String PERSON_PHONE = "phone";
     public static final String PERSON_EMAIL = "email";
+    public static final String PERSON_RENTING = "renting";
+
 
 
     public MyDatabaseHelper(Context context)
     {
-        super(context, DATABASE_NAME, null, 6);
+        super(context, DATABASE_NAME, null, 8);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db)
     {
         //Still need to add foreign key to other table after testin
-        db.execSQL("create table " + TABLE_PERSON + " ( " + PERSON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PERSON_NAME + " TEXT, " + PERSON_PHONE + " TEXT, " + PERSON_EMAIL + " TEXT)");
+        db.execSQL("create table " + TABLE_PERSON + " ( " + PERSON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PERSON_NAME + " TEXT, " + PERSON_PHONE + " TEXT, " + PERSON_EMAIL + " TEXT, " + PERSON_RENTING + " TEXT NOT NULL DEFAULT 'false')");
         db.execSQL("create table " + TABLE_ITEMS + " ( " + ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PERSON_ID + " INTEGER, " + ITEM_NAME + " TEXT, " + ITEM_LOCATION + " TEXT, " + ITEM_DESCRIPTION + " TEXT, " + ITEM_INSTOCK + " TEXT NOT NULL DEFAULT 'true', " + ITEM_DUEDATE + " DATE, FOREIGN KEY(" + PERSON_ID +") REFERENCES "+ TABLE_PERSON+"("+PERSON_ID+"))");
         ContentValues contentValues = new ContentValues();
-        //insert data because list view doesn't work when only one item is in the database? can't figure out why that is.
-        contentValues.put(ITEM_NAME,"Test");
-        contentValues.put(ITEM_DESCRIPTION,"Test description");
-        contentValues.put(ITEM_LOCATION,"Test location");
-        db.insert(TABLE_ITEMS,null, contentValues);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
@@ -123,6 +120,34 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         String query = "UPDATE " + TABLE_ITEMS + " SET " + ITEM_INSTOCK + " = 'true' WHERE " + ITEM_ID + " = " + itemID;
         db.execSQL(query);
     }
+
+    public void setRentFalse(int personID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_PERSON + " SET " + PERSON_RENTING + " = 'false' WHERE " + PERSON_ID + " = " + personID;
+        db.execSQL(query);
+    }
+
+    //update query to change item to in stock
+    public void setRentTrue(int personID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_PERSON + " SET " + PERSON_RENTING + " = 'true' WHERE " + PERSON_ID + " = " + personID;
+        db.execSQL(query);
+    }
+
+    public Cursor getRentTrue() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_PERSON + " WHERE " + PERSON_RENTING + " = 'true'";
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
+    public Cursor getRentFalse() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_PERSON + " WHERE " + PERSON_RENTING + " = 'false'";
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
     //update query to associate personID with itemID
 
     public void setPersonIDinItem(int personID, int itemID) {
@@ -130,6 +155,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         String query = "UPDATE " + TABLE_ITEMS + " SET " + PERSON_ID + " = " + personID + " WHERE " + ITEM_ID + " = " + itemID;
         db.execSQL(query);
     }
+
+    public void setPersonIDinItemNull(int itemID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_ITEMS + " SET " + PERSON_ID + " =  null" + " WHERE " + ITEM_ID + " = " + itemID;
+        db.execSQL(query);
+    }
+
+
 
     public boolean insertpData(String fname, String phone, String email)
     {

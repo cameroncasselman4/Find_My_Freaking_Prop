@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         configureAddItemButton();
         configureFullInventoryButton();
         configureAddPersonButton();
-        configureViewPeopleButton();
+        //configureViewPeopleButton();
     }
 
     public void configureAddPersonButton() {

@@ -144,9 +144,10 @@ public class EditDataActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     db.checkIn(selectedItemID);
                     toastMessage("Item checked in");
+                    db.setPersonIDinItemNull(selectedItemID);
                     btnCheckout.setText("CHECKOUT");
                     getPersonID.setText("Item available for rent");
-
+                    finish();
                 }
             });
         }

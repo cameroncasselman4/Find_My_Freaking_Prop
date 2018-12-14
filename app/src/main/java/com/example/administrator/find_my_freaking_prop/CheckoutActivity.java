@@ -36,7 +36,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
     public void populateListView() {
-        setContentView(R.layout.activity_view_people);
+        setContentView(R.layout.activity_checkout);
         Intent receivedIntent = getIntent();
         selectedItemID = receivedIntent.getIntExtra("id",-1);
         listView = (ListView) findViewById(R.id.peopleList);
@@ -74,16 +74,23 @@ public class CheckoutActivity extends AppCompatActivity {
                 //set personID in Table_Items to the person id clicked
                 db.setPersonIDinItem(personID,selectedItemID);
                 //change in stock to false
-                db.updateItemInStockFalse(selectedItemID);
                 Cursor data = db.getInStock(selectedItemID);
                 if(data.moveToNext())
                 {
-                    Log.d(TAG, "onItemClick: This ID is " + data.getString(0));
+                    Log.d(TAG, "Before checkout " + data.getString(0));
+                }
+                db.updateItemInStockFalse(selectedItemID);
+                data = db.getInStock(selectedItemID);
+                if(data.moveToNext())
+                {
+                    Log.d(TAG, "After checkout " + data.getString(0));
                 }
                 //set toast notifying the user that person is now renting the item
                 toastMessage("Item checked out to " + personName);
                 //look into what happens when holding the button down?
                 finish();
+                Intent sendToInventoryList = new Intent(CheckoutActivity.this,ViewInventory.class);
+                startActivity(sendToInventoryList);
 
             }
         });

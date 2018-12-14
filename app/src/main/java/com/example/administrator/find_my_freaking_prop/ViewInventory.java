@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,27 +23,80 @@ public class ViewInventory extends AppCompatActivity {
     private static final String TAG = "ViewInventory1";
     ListView listView;
     Button inStockbtn,outOfStockbtn,viewInventorybtn;
+    TextView buttonPressedLogo;
     //String items[] = new String [] {"Apple","Orange","Bananna","Grapes"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_inventory);
+        nav();
         buttons();
         populateListView("viewInventorybtn");
     }
     @Override
     public void onRestart() {
         super.onRestart();
+        setContentView(R.layout.activity_view_inventory);
+        nav();
         buttons();
         populateListView("viewInventorybtn");
     }
 
+    public void nav() {
+        configureAddItemButton();
+        configureFullInventoryButton();
+        configureAddPersonButton();
+        //configureViewPeopleButton();
+    }
 
+    public void configureAddPersonButton() {
+        Button addPerson = (Button) findViewById(R.id.addPerson);
+
+        addPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ViewInventory.this, AddPerson.class));
+            }
+        });
+    }
+    public void configureAddItemButton()
+    {
+        Button addItem = (Button)findViewById(R.id.addItem);
+        addItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ViewInventory.this, AddItem.class));
+            }
+        });
+    }
+
+    //view all inventory
+    public void configureFullInventoryButton() {
+        Button fullInventoryButton = (Button)findViewById(R.id.viewList);
+        fullInventoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent fullInventoryIntent = new Intent(ViewInventory.this, ViewInventory.class);
+                fullInventoryIntent.putExtra("fromButton","viewInventory");
+                startActivity(fullInventoryIntent);
+            }
+        });
+    }
+
+    public void configureViewPeopleButton() {
+        Button viewPeopleButton = (Button) findViewById(R.id.viewPeopleButton);
+        viewPeopleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ViewInventory.this, view_people.class));
+            }
+        });
+    }
 
     private void buttons(){
 
         //set on click listeners for buttons
-        setContentView(R.layout.activity_view_inventory);
-
+        buttonPressedLogo = (TextView) findViewById(R.id.textView2);
         viewInventorybtn = (Button) findViewById(R.id.btnViewInventory);
         inStockbtn = (Button) findViewById(R.id.inStock);
         outOfStockbtn = (Button) findViewById(R.id.outOfStock);
@@ -51,6 +105,7 @@ public class ViewInventory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String buttonPressed = "viewInventorybtn";
+                buttonPressedLogo.setText("Full Inventory");
                 populateListView(buttonPressed);
             }
         });
@@ -59,6 +114,7 @@ public class ViewInventory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String buttonPressed = "inStockbtn";
+                buttonPressedLogo.setText("In Stock");
                 populateListView(buttonPressed);
             }
         });
@@ -67,6 +123,7 @@ public class ViewInventory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String buttonPressed = "outOfStockbtn";
+                buttonPressedLogo.setText("Out of Stock");
                 populateListView(buttonPressed);
             }
         });
@@ -89,27 +146,20 @@ public class ViewInventory extends AppCompatActivity {
             data = db.getAllDataOutOfStock(); //query to get all data out of stock
         }
 
-        int numCols = data.getColumnCount() -1; //database meta data function that returns the number of rows -1
         //** 1st col = itemID, 2nd col = personID, 3rd = itemName, 4th col = itemLocation 5th col = itemDescription, 6th col = itemInStock
-        ArrayList<ArrayList<String>> itemData = new ArrayList<ArrayList<String>>(); //This is used to store information about the attributes in the table ***leaving out due date for now.
-        ArrayList<String>getRowData = new ArrayList<String>();
-        for(int i = 0; i <= numCols; i++) //loop for each column
-        {
-            while(data.moveToNext())
-            { //loops until there's no more rows
-                getRowData.add(data.getString(i));
-            }
-            //add getRowData to 2d arrayList
-            itemData.add(new ArrayList<String>(getRowData));
-            //clear getRowData for next use
-            getRowData.clear();
-            //move cursor back to the top
-            data.moveToFirst();
-        }
-        Log.d(TAG, "onItemClick: This ID is " + itemData.get(2));
+        //ArrayList<ArrayList<String>> itemData = new ArrayList<ArrayList<String>>(); //This is used to store information about the attributes in the table ***leaving out due date for now.
+        ArrayList<String>getData = new ArrayList<String>();
+        while(data.moveToNext())
+         { //loops until there's no more rows
+             Log.d(TAG, "reading itemName from database: " + data.getString(1));
+             getData.add(data.getString(2));
+         }
 
-        final ListAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,itemData.get(2)); //add listData arraylist to list view
+         Log.d(TAG, "onItemClick: This ID is " + getData);
+
+        final ListAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,getData); //add listData arraylist to list view
         listView.setAdapter(adapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -126,7 +176,6 @@ public class ViewInventory extends AppCompatActivity {
                     itemLocation = data.getString(3);
                     itemDescription = data.getString(4);
                     itemInStock = data.getString(5);
-
                 }
                 if(itemID > -1){
                     Log.d(TAG, "onItemClick: This ID is " + itemID);
