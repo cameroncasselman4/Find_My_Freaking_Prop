@@ -127,6 +127,8 @@ public class EditDataActivity extends AppCompatActivity {
                 checkoutScreenIntent.putExtra("id",selectedItemID);
                 //checkoutScreenIntent.putExtra("personID",selectedPersonID);
                 startActivity(checkoutScreenIntent);
+                //btnCheckout.setText("Check in");
+
             }
         });
     }
@@ -146,7 +148,13 @@ public class EditDataActivity extends AppCompatActivity {
             }
         }
 
-       return personName;
+        if ("Item available for rent".equalsIgnoreCase(personName)) {
+            btnCheckout.setText(R.string.checkout);
+        } else  {
+            btnCheckout.setText(R.string.checkIn);
+        }
+
+        return personName;
     }
 
     private void toastMessage(String message){
