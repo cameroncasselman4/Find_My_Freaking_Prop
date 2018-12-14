@@ -7,53 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/viewInStock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/imageView4"
-        android:layout_alignTop="@+id/viewList"
-        android:background="@color/colorPrimary"
-        android:text="In Stock" />
 
-    <Button
-        android:id="@+id/viewOutOfStock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/imageView4"
-        android:layout_alignTop="@+id/viewList"
-        android:background="@color/colorPrimary"
-        android:text="Out of Stock" />
 
-    <Button
-        android:id="@+id/addItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="139dp"
-        android:background="@color/colorPrimary"
-        android:text="add item" />
 
-    <Button
-        android:id="@+id/addPerson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="54dp"
-        android:text="add person"
-        android:background="@color/colorPrimary"/>
-
-    <Button
-        android:id="@+id/viewList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
-        android:background="@color/colorPrimary"
-        android:text="View Inventory" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -64,15 +20,50 @@
         android:layout_marginTop="23dp"
         app:srcCompat="@drawable/screenshot" />
 
-    <Button
-        android:id="@+id/viewPeopleButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/your_outer_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="220dp"
-        android:background="@color/colorPrimary"
-        android:text="View People" />
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/addItem"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_weight="0.25"
+            android:background="@color/colorPrimary"
+            android:text="ADD ITEM" />
+
+        <Button
+            android:id="@+id/addPerson"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_toRightOf="@+id/btnDelete"
+            android:layout_weight="0.25"
+            android:background="@color/colorPrimary"
+            android:text="Add PERSON" />
+
+        <Button
+            android:id="@+id/viewList"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_toRightOf="@+id/btnDelete"
+            android:layout_weight="0.25"
+            android:background="@color/colorPrimary"
+            android:text="INVENTORY" />
+
+        <Button
+            android:id="@+id/viewPeopleButton"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_toRightOf="@+id/btnDelete"
+            android:layout_weight="0.30"
+            android:background="@color/colorPrimary"
+            android:text="UPDATE PEOPLE" />
+    </LinearLayout>
+
 
 
 </RelativeLayout>

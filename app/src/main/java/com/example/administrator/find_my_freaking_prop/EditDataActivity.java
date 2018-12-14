@@ -72,7 +72,8 @@ public class EditDataActivity extends AppCompatActivity {
         getItemDescription.setText(selectedItemDescription);
 
         //this checks the personId associated with the item. If it's null then the text is set
-        getPersonID.setText(getPersonName(selectedItemID));
+        String personName = getPersonName(selectedItemID);
+        getPersonID.setText(personName);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +122,8 @@ public class EditDataActivity extends AppCompatActivity {
         });
 
         //send to checkout activity
+
+        
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,12 +151,6 @@ public class EditDataActivity extends AppCompatActivity {
                 personName = data.getString(0);
                 Log.d("stuff1", "data.movetonext " + personName);
             }
-        }
-
-        if ("Item available for rent".equalsIgnoreCase(personName)) {
-            btnCheckout.setText(R.string.checkout);
-        } else  {
-            btnCheckout.setText(R.string.checkIn);
         }
 
         return personName;

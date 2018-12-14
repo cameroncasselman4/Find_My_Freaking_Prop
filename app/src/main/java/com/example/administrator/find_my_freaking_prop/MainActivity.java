@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
         configureFullInventoryButton();
         configureAddPersonButton();
         configureViewPeopleButton();
-        configureInStockButton();
-        configureOutStockButton();
     }
 
     public void configureAddPersonButton() {
@@ -58,32 +56,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    //view inStock inventory
-    public void configureInStockButton() {
-        Button inStockButton = (Button)findViewById(R.id.viewInStock);
-        inStockButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent inStockIntent = new Intent(MainActivity.this, ViewInventory.class);
-                inStockIntent.putExtra("fromButton","inStock");
-                startActivity(inStockIntent);
-            }
-        });
-    }
-
-    public void configureOutStockButton() {
-        Button outOfStockButton = (Button)findViewById(R.id.viewOutOfStock);
-        outOfStockButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent outOfStockIntent = new Intent(MainActivity.this, ViewInventory.class);
-                outOfStockIntent.putExtra("fromButton","outOfStock");
-                startActivity(outOfStockIntent);
-            }
-        });
-    }
-
-
 
     public void configureViewPeopleButton()
     {
