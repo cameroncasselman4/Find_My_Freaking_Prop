@@ -123,19 +123,33 @@ public class EditDataActivity extends AppCompatActivity {
 
         //send to checkout activity
 
-        
-        btnCheckout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent checkoutScreenIntent = new Intent(EditDataActivity.this, CheckoutActivity.class);
-                //startActivity(new Intent(EditDataActivity.this, CheckoutActivity.class));
-                checkoutScreenIntent.putExtra("id",selectedItemID);
-                //checkoutScreenIntent.putExtra("personID",selectedPersonID);
-                startActivity(checkoutScreenIntent);
-                //btnCheckout.setText("Check in");
+        if(personName.equals("Item available for rent")) {
+            btnCheckout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent checkoutScreenIntent = new Intent(EditDataActivity.this, CheckoutActivity.class);
+                    //startActivity(new Intent(EditDataActivity.this, CheckoutActivity.class));
+                    checkoutScreenIntent.putExtra("id", selectedItemID);
+                    //checkoutScreenIntent.putExtra("personID",selectedPersonID);
+                    startActivity(checkoutScreenIntent);
+                    //btnCheckout.setText("Check in");
 
-            }
-        });
+                }
+            });
+        }
+        else{
+            btnCheckout.setText("CHECK IN");
+            btnCheckout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    db.checkIn(selectedItemID);
+                    toastMessage("Item checked in");
+                    btnCheckout.setText("CHECKOUT");
+                    getPersonID.setText("Item available for rent");
+
+                }
+            });
+        }
     }
 
 

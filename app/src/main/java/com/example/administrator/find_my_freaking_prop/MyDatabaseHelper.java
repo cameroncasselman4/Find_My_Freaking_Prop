@@ -28,7 +28,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     public MyDatabaseHelper(Context context)
     {
-        super(context, DATABASE_NAME, null, 5);
+        super(context, DATABASE_NAME, null, 6);
     }
 
     @Override
@@ -118,7 +118,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
     //update query to change item to in stock
-    public void updateItemInStockTrue(int itemID) {
+    public void checkIn(int itemID) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "UPDATE " + TABLE_ITEMS + " SET " + ITEM_INSTOCK + " = 'true' WHERE " + ITEM_ID + " = " + itemID;
         db.execSQL(query);
